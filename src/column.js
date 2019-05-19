@@ -30,6 +30,12 @@ export default class Column extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps != this.props) {
+      this.uploadHoverOut();
+    }
+  }
+
   onFileUpload = e => {
     const file = e.target.files[0];
     this.getBase64(file).then(base64 => {
@@ -80,10 +86,10 @@ export default class Column extends Component {
               }}
               onClick={e => this.upload_image.click()}
               alt={this.props.column.id}
-              onMouseOver={() => {
+              onMouseEnter={() => {
                 this.uploadHoverIn();
               }}
-              onMouseOut={() => {
+              onMouseLeave={() => {
                 this.uploadHoverOut();
               }}
             />
